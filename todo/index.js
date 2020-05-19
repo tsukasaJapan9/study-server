@@ -45,6 +45,15 @@ function doneList() {
 }
 
 /**
+ * タスク一覧を取得する
+ * @return {array}
+ */
+function list() {
+    return tasks.map(t => t.name)
+}
+
+
+/**
  * taskを完了状態にする
  * @param {string} taskName
  */
@@ -66,4 +75,4 @@ function del(taskName) {
     }
 }
 
-module.exports = {todo, done, doneList, notDoneList, del};
+module.exports = {todo, done, list, doneList, notDoneList, del};

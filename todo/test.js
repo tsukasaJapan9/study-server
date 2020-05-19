@@ -11,10 +11,12 @@ todo.todo(todo2);
 todo.todo(todo3);
 
 assert.deepEqual(todo.notDoneList(), [todo1, todo2, todo3]);
+assert.deepEqual(todo.list(), [todo1, todo2, todo3]);
 
 todo.done(todo1);
 assert.deepEqual(todo.doneList(), [todo1])
 assert.deepEqual(todo.notDoneList(), [todo2, todo3])
+assert.deepEqual(todo.list(), [todo1, todo2, todo3]);
 
 todo.del(todo1)
 todo.del(todo2)
