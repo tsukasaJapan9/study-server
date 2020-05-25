@@ -2,5 +2,12 @@
   "name": "node-js-http",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "^2.0.4",
+    "pug": "^2.0.4"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
 }
