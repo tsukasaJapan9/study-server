@@ -3,6 +3,7 @@
 const http = require('http');
 const pug = require('pug');
 const qs = require('querystring');
+const port = process.env.PORT || 8000;
 
 const server = http.createServer((req, res) => {
     const now = new Date();
@@ -52,7 +53,6 @@ const server = http.createServer((req, res) => {
     console.error('[' + new Date() + '] Client error', e)
 });
 
-const port = 8000;
 server.listen(port, () => {
     console.log('listening on ' + port)
 });
