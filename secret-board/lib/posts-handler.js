@@ -2,13 +2,15 @@
 
 const pug = require('pug');
 
+const contents = [];
+
 function handle(req, res) {
     switch (req.method) {
         case 'GET':
             res.writeHead(200, {
                 'Content-Type': 'text/html; charset=utf-8'
             });
-            res.end(pug.renderFile('./views/posts.pug'));
+            res.end(pug.renderFile('./views/posts.pug', {contents: contents}));
             break;
         case 'POST':
             let body = [];
@@ -19,6 +21,7 @@ function handle(req, res) {
                 const decoded = decodeURIComponent(body);
                 const content = decoded.split('content=')[1];
                 console.info('post: ' + content);
+                contents.push(content);
                 handleRedirectPosts(req, res);
             });
             break;
