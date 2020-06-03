@@ -1,8 +1,7 @@
 'use strict';
 
 const pug = require('pug');
-
-const contents = [];
+const Post = require('./post');
 
 function handle(req, res) {
     switch (req.method) {
@@ -10,7 +9,9 @@ function handle(req, res) {
             res.writeHead(200, {
                 'Content-Type': 'text/html; charset=utf-8'
             });
-            res.end(pug.renderFile('./views/posts.pug', {contents: contents}));
+            Post.findAll().then((posts) => {
+                res.end(pug.renderFile('./views/posts.pug', {posts: posts}));
+            });
             break;
         case 'POST':
             let body = [];
@@ -20,9 +21,13 @@ function handle(req, res) {
                 body = Buffer.concat(body).toString();
                 const decoded = decodeURIComponent(body);
                 const content = decoded.split('content=')[1];
-                console.info('post: ' + content);
-                contents.push(content);
-                handleRedirectPosts(req, res);
+                Post.create({
+                    content: content,
+                    trackingCookie: null,
+                    postedBy: req.user
+                }).then(() => {
+                    handleRedirectPosts(req, res);
+                });
             });
             break;
         default:
