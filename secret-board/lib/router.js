@@ -12,7 +12,6 @@ function route(req, res) {
             util.handleLogout(req, res);
             break;
         case '/favicon.ico':
-            console.info("favicon")
             util.handleFavicon(req, res);
             break;
         case '/posts?delete=1':
