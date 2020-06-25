@@ -11,6 +11,13 @@ function route(req, res) {
         case '/logout':
             util.handleLogout(req, res);
             break;
+        case '/favicon.ico':
+            console.info("favicon")
+            util.handleFavicon(req, res);
+            break;
+        case '/posts?delete=1':
+            postHandler.handleDelete(req, res);
+            break;
         default:
             util.handleNotFound(req, res);
             break;
