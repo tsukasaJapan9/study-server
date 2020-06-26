@@ -20,6 +20,13 @@ function handleNotFound(req, res) {
     res.end('ページが見つかりません');
 }
 
+function handleBadRequest(req, res) {
+    res.writeHead(404, {
+        'Content-type': 'text/plain; charset=utf-8'
+    });
+    res.end('未対応のリクエストです');
+}
+
 function handleFavicon(req, res) {
     res.writeHead(200, {
       'Content-Type': 'image/vnd.microsoft.icon'
@@ -31,5 +38,6 @@ function handleFavicon(req, res) {
 module.exports = {
     handleLogout,
     handleNotFound,
-    handleFavicon
+    handleFavicon,
+    handleBadRequest
 };
